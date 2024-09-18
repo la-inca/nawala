@@ -30,6 +30,24 @@ function getDomain(url) {
   }
 }
 
+async function getFinalUrl(originalUrl) {
+  try {
+    const response = await fetch(originalUrl, {
+      method: 'GET',
+      redirect: 'manual',
+    });
+
+    if (response.status >= 300 && response.status < 400) {
+      return response.headers.get('location'); 
+    } else {
+      return originalUrl; 
+    }
+  } catch (error) {
+    console.error(`Error fetching ${originalUrl}:`, error.message);
+    return null;
+  }
+}
+
 async function getPage(domain) {
     const url = `https://trustpositif.smbgroup.io/?domains=${domain}`;
     const controller = new AbortController(); 
@@ -89,7 +107,7 @@ function sendLineNotify(message) {
 
 async function checkLinksAndNotify() {
   const links = [
-    "https://xurl.bio/wdbos-login-agent",
+    "	https://xurl.bio/jonitogel-promotionreg",
     "https://xurl.bio/mancingduitchamp-promotion",
     "https://xurl.bio/mancingduitchamp-alternatif",
     "https://xurl.bio/mancingduitchamp-daftar",
@@ -150,6 +168,13 @@ async function checkLinksAndNotify() {
           const tdValue = parsePage(html);
           if (tdValue == 'Ada') {
             sendLineNotify(`${shortUrl} = ${originalUrl}. Please change mota bhai dalle.`);
+
+            const lastUrl = await getFinalUrl(originalUrl);
+            const lastDomain = getDomain(lastUrl);
+
+            if (lastDomain && lastDomain !== domain) {
+              sendLineNotify(`${shortUrl} = redirects from ${originalUrl} to ${lastUrl}. Someone make redirect please check manually ${lastUrl} LP or Nawala.`); 
+            } 
           }
         }
       }
