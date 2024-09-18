@@ -2,8 +2,7 @@ name: Run notify.js script
 
 on:
   schedule:
-    # At minute 30 past every hour
-    - cron: '07 * * * *'
+    - cron: '30 * * * *'
   workflow_dispatch:
 
 jobs:
