@@ -2,7 +2,7 @@ name: Run notify.js every 30th minute
 
 on:
   schedule:
-    - cron: '5 * * * *'
+    - cron: '14 * * * *'
 
 jobs:
   run-notify:
