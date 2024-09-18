@@ -1,4 +1,4 @@
-name: Run notify.js every 30th minute
+name: Run notify.js
 
 on:
   schedule:
