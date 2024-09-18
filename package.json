@@ -1,0 +1,16 @@
+{
+  "name": "a_nawala",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "node notify.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "cross-fetch": "^4.0.0"
+  }
+}
