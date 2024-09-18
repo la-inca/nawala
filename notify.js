@@ -89,7 +89,7 @@ function sendLineNotify(message) {
 
 async function checkLinksAndNotify() {
   const links = [
-    "https://xurl.bio/latoto-login-agent"
+    "https://xurl.bio/latoto-login-agent",
     "https://xurl.bio/mancingduitchamp-promotion",
     "https://xurl.bio/mancingduitchamp-alternatif",
     "https://xurl.bio/mancingduitchamp-daftar",
