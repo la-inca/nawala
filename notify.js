@@ -161,19 +161,18 @@ async function checkLinksAndNotify() {
     const originalUrl = await getOriginalUrl(shortUrl);
     if (originalUrl) {
       const domain = getDomain(originalUrl);
+      const lastUrl = await getFinalUrl(originalUrl);
+            const lastDomain = getDomain(lastUrl);
+
+            if (lastDomain && lastDomain !== domain) {
+              sendLineNotify(`${shortUrl} = redirects from ${originalUrl} to ${lastUrl}. Someone make redirect please check manually ${lastUrl} LP or Nawala.`); 
+            } 
       if (domain) {
         const html = await getPage(domain);
         if (html) {
           const tdValue = parsePage(html);
           if (tdValue == 'Ada') {
             sendLineNotify(`${shortUrl} = ${originalUrl}. Please change mota bhai dalle.`);
-
-            const lastUrl = await getFinalUrl(originalUrl);
-            const lastDomain = getDomain(lastUrl);
-
-            if (lastDomain && lastDomain !== domain) {
-              sendLineNotify(`${shortUrl} = redirects from ${originalUrl} to ${lastUrl}. Someone make redirect please check manually ${lastUrl} LP or Nawala.`); 
-            } 
           }
         }
       }
