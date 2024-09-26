@@ -153,6 +153,8 @@ async function checkLinksAndNotify() {
     "https://xurl.bio/partaitogelchamp-login"
   ];
 
+  let adaFound = false;
+
   for (const shortUrl of links) {
     const originalUrl = await getOriginalUrl(shortUrl);
     if (originalUrl) {
@@ -168,11 +170,15 @@ async function checkLinksAndNotify() {
         if (html) {
           const tdValue = parsePage(html);
           if (tdValue == 'Ada') {
+            adaFound = true;
             sendLineNotify(`${shortUrl} = ${originalUrl}. Please change mota bhai dalle.`);
           }
         }
       }
     }
+  }
+  if (!adaFound) {
+    sendLineNotify('All link safe mota bhai dalle');
   }
 }
 
